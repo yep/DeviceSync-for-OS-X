@@ -5,6 +5,11 @@ On OS X 10.9 (Mavericks), calendar synchronization between iOS and OS X no longe
 
 If you do not want to use iCloud for synchronization, this litte app may help.
 
+Install
+-------
+
+Download osxCalSync as zip file from [github release page](https://github.com/yep/osxCalSync/releases).
+
 Usage
 -----
 
