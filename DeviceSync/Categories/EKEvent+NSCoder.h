@@ -1,9 +1,8 @@
 //
-//  DSAppDelegate.h
+//  EKEvent+NSCoder.h
 //  DeviceSync
 //
 // Copyright (c) 2013 Jahn Bertsch
-// Copyright (c) 2012 Rasmus Andersson <http://rsms.me/>
 //
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -24,13 +23,11 @@
 // THE SOFTWARE.
 //
 
-#import <Cocoa/Cocoa.h>
-#import <PTChannel.h>
+#import <EventKit/EventKit.h>
 
-static const NSTimeInterval DSAppReconnectDelay = 1.0;
+@interface EKEvent (NSCoder)
 
-@interface DSAppDelegate : NSObject <NSApplicationDelegate, PTChannelDelegate>
-
-@property (assign) IBOutlet NSTextView *outputTextView;
+- (id)  initWithCoder:(NSCoder *)decoder;
+- (void)encodeWithCoder:(NSCoder *)encoder;
 
 @end

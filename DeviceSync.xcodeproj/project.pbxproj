@@ -7,49 +7,44 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		173C3A1318368921009E2F55 /* EventKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 173C3A1218368921009E2F55 /* EventKit.framework */; };
+		173C3A151836896B009E2F55 /* AppKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 17949EA71836793D0091F2EC /* AppKit.framework */; };
+		173C3A171836896B009E2F55 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 17949EA91836793D0091F2EC /* Foundation.framework */; };
+		173C3A1C183689C1009E2F55 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 173C3A1B183689C1009E2F55 /* QuartzCore.framework */; };
+		173C3A1E18368B21009E2F55 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 173C3A1D18368B21009E2F55 /* main.m */; };
+		177ECAE0183692E60030A4F6 /* MainWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 177ECADE183692E60030A4F6 /* MainWindow.xib */; };
+		177ECAE21837B3360030A4F6 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 177ECAE11837B3360030A4F6 /* README.md */; };
 		17949EA51836793D0091F2EC /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 17949EA41836793D0091F2EC /* Cocoa.framework */; };
 		17949EAF1836793D0091F2EC /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 17949EAD1836793D0091F2EC /* InfoPlist.strings */; };
-		17949EB11836793D0091F2EC /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 17949EB01836793D0091F2EC /* main.m */; };
 		17949EB51836793D0091F2EC /* Credits.rtf in Resources */ = {isa = PBXBuildFile; fileRef = 17949EB31836793D0091F2EC /* Credits.rtf */; };
 		17949EB81836793D0091F2EC /* DSAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 17949EB71836793D0091F2EC /* DSAppDelegate.m */; };
-		17949EBB1836793D0091F2EC /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 17949EB91836793D0091F2EC /* MainMenu.xib */; };
 		17949EBD1836793D0091F2EC /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 17949EBC1836793D0091F2EC /* Images.xcassets */; };
-		17949EC41836793D0091F2EC /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 17949EC31836793D0091F2EC /* XCTest.framework */; };
-		17949EC51836793D0091F2EC /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 17949EA41836793D0091F2EC /* Cocoa.framework */; };
-		17949ECD1836793D0091F2EC /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 17949ECB1836793D0091F2EC /* InfoPlist.strings */; };
-		17949ECF1836793D0091F2EC /* DeviceSyncTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 17949ECE1836793D0091F2EC /* DeviceSyncTests.m */; };
+		17949EDA18367F790091F2EC /* EKEvent+NSCoder.m in Sources */ = {isa = PBXBuildFile; fileRef = 17949ED918367F790091F2EC /* EKEvent+NSCoder.m */; };
+		95AB0464756C40D4A3AB6A75 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A5FD9BBF8D6A4D94A8F32C87 /* libPods.a */; };
 /* End PBXBuildFile section */
 
-/* Begin PBXContainerItemProxy section */
-		17949EC61836793D0091F2EC /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 17949E991836793D0091F2EC /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 17949EA01836793D0091F2EC;
-			remoteInfo = DeviceSync;
-		};
-/* End PBXContainerItemProxy section */
-
 /* Begin PBXFileReference section */
+		173C3A11183685E2009E2F55 /* DSProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DSProtocol.h; sourceTree = "<group>"; };
+		173C3A1218368921009E2F55 /* EventKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = EventKit.framework; path = System/Library/Frameworks/EventKit.framework; sourceTree = SDKROOT; };
+		173C3A1B183689C1009E2F55 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		173C3A1D18368B21009E2F55 /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = main.m; path = SupportingFiles/main.m; sourceTree = "<group>"; };
+		177ECADF183692E60030A4F6 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/MainWindow.xib; sourceTree = "<group>"; };
+		177ECAE11837B3360030A4F6 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README.md; sourceTree = "<group>"; };
 		17949EA11836793D0091F2EC /* DeviceSync.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DeviceSync.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		17949EA41836793D0091F2EC /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
 		17949EA71836793D0091F2EC /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
-		17949EA81836793D0091F2EC /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		17949EA91836793D0091F2EC /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
-		17949EAC1836793D0091F2EC /* DeviceSync-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "DeviceSync-Info.plist"; sourceTree = "<group>"; };
+		17949EAC1836793D0091F2EC /* DeviceSync-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "DeviceSync-Info.plist"; path = "SupportingFiles/DeviceSync-Info.plist"; sourceTree = "<group>"; };
 		17949EAE1836793D0091F2EC /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
-		17949EB01836793D0091F2EC /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		17949EB21836793D0091F2EC /* DeviceSync-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "DeviceSync-Prefix.pch"; sourceTree = "<group>"; };
+		17949EB21836793D0091F2EC /* DeviceSync-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "DeviceSync-Prefix.pch"; path = "SupportingFiles/DeviceSync-Prefix.pch"; sourceTree = "<group>"; };
 		17949EB41836793D0091F2EC /* en */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; name = en; path = en.lproj/Credits.rtf; sourceTree = "<group>"; };
-		17949EB61836793D0091F2EC /* DSAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DSAppDelegate.h; sourceTree = "<group>"; };
-		17949EB71836793D0091F2EC /* DSAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DSAppDelegate.m; sourceTree = "<group>"; };
-		17949EBA1836793D0091F2EC /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/MainMenu.xib; sourceTree = "<group>"; };
+		17949EB61836793D0091F2EC /* DSAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = DSAppDelegate.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
+		17949EB71836793D0091F2EC /* DSAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = DSAppDelegate.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		17949EBC1836793D0091F2EC /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
-		17949EC21836793D0091F2EC /* DeviceSyncTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = DeviceSyncTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		17949EC31836793D0091F2EC /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
-		17949ECA1836793D0091F2EC /* DeviceSyncTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "DeviceSyncTests-Info.plist"; sourceTree = "<group>"; };
-		17949ECC1836793D0091F2EC /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
-		17949ECE1836793D0091F2EC /* DeviceSyncTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DeviceSyncTests.m; sourceTree = "<group>"; };
+		17949ED818367F790091F2EC /* EKEvent+NSCoder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "EKEvent+NSCoder.h"; path = "Categories/EKEvent+NSCoder.h"; sourceTree = "<group>"; };
+		17949ED918367F790091F2EC /* EKEvent+NSCoder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "EKEvent+NSCoder.m"; path = "Categories/EKEvent+NSCoder.m"; sourceTree = "<group>"; };
+		8E2C008FE84240AEBE77713A /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = "<group>"; };
+		A5FD9BBF8D6A4D94A8F32C87 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -57,16 +52,12 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				173C3A1C183689C1009E2F55 /* QuartzCore.framework in Frameworks */,
+				173C3A151836896B009E2F55 /* AppKit.framework in Frameworks */,
+				173C3A171836896B009E2F55 /* Foundation.framework in Frameworks */,
+				173C3A1318368921009E2F55 /* EventKit.framework in Frameworks */,
 				17949EA51836793D0091F2EC /* Cocoa.framework in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		17949EBF1836793D0091F2EC /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				17949EC51836793D0091F2EC /* Cocoa.framework in Frameworks */,
-				17949EC41836793D0091F2EC /* XCTest.framework in Frameworks */,
+				95AB0464756C40D4A3AB6A75 /* libPods.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -76,10 +67,11 @@
 		17949E981836793D0091F2EC = {
 			isa = PBXGroup;
 			children = (
+				177ECAE11837B3360030A4F6 /* README.md */,
 				17949EAA1836793D0091F2EC /* DeviceSync */,
-				17949EC81836793D0091F2EC /* DeviceSyncTests */,
 				17949EA31836793D0091F2EC /* Frameworks */,
 				17949EA21836793D0091F2EC /* Products */,
+				8E2C008FE84240AEBE77713A /* Pods.xcconfig */,
 			);
 			sourceTree = "<group>";
 		};
@@ -87,7 +79,6 @@
 			isa = PBXGroup;
 			children = (
 				17949EA11836793D0091F2EC /* DeviceSync.app */,
-				17949EC21836793D0091F2EC /* DeviceSyncTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -95,63 +86,49 @@
 		17949EA31836793D0091F2EC /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				173C3A1218368921009E2F55 /* EventKit.framework */,
+				17949EA71836793D0091F2EC /* AppKit.framework */,
+				173C3A1B183689C1009E2F55 /* QuartzCore.framework */,
+				17949EA91836793D0091F2EC /* Foundation.framework */,
 				17949EA41836793D0091F2EC /* Cocoa.framework */,
-				17949EC31836793D0091F2EC /* XCTest.framework */,
-				17949EA61836793D0091F2EC /* Other Frameworks */,
+				A5FD9BBF8D6A4D94A8F32C87 /* libPods.a */,
 			);
 			name = Frameworks;
-			sourceTree = "<group>";
-		};
-		17949EA61836793D0091F2EC /* Other Frameworks */ = {
-			isa = PBXGroup;
-			children = (
-				17949EA71836793D0091F2EC /* AppKit.framework */,
-				17949EA81836793D0091F2EC /* CoreData.framework */,
-				17949EA91836793D0091F2EC /* Foundation.framework */,
-			);
-			name = "Other Frameworks";
 			sourceTree = "<group>";
 		};
 		17949EAA1836793D0091F2EC /* DeviceSync */ = {
 			isa = PBXGroup;
 			children = (
+				173C3A11183685E2009E2F55 /* DSProtocol.h */,
 				17949EB61836793D0091F2EC /* DSAppDelegate.h */,
 				17949EB71836793D0091F2EC /* DSAppDelegate.m */,
-				17949EB91836793D0091F2EC /* MainMenu.xib */,
+				177ECADE183692E60030A4F6 /* MainWindow.xib */,
+				17949EDB18367F800091F2EC /* Categories */,
+				17949EAB1836793D0091F2EC /* SupportingFiles */,
 				17949EBC1836793D0091F2EC /* Images.xcassets */,
-				17949EAB1836793D0091F2EC /* Supporting Files */,
 			);
 			path = DeviceSync;
 			sourceTree = "<group>";
 		};
-		17949EAB1836793D0091F2EC /* Supporting Files */ = {
+		17949EAB1836793D0091F2EC /* SupportingFiles */ = {
 			isa = PBXGroup;
 			children = (
+				173C3A1D18368B21009E2F55 /* main.m */,
 				17949EAC1836793D0091F2EC /* DeviceSync-Info.plist */,
 				17949EAD1836793D0091F2EC /* InfoPlist.strings */,
-				17949EB01836793D0091F2EC /* main.m */,
 				17949EB21836793D0091F2EC /* DeviceSync-Prefix.pch */,
 				17949EB31836793D0091F2EC /* Credits.rtf */,
 			);
-			name = "Supporting Files";
+			name = SupportingFiles;
 			sourceTree = "<group>";
 		};
-		17949EC81836793D0091F2EC /* DeviceSyncTests */ = {
+		17949EDB18367F800091F2EC /* Categories */ = {
 			isa = PBXGroup;
 			children = (
-				17949ECE1836793D0091F2EC /* DeviceSyncTests.m */,
-				17949EC91836793D0091F2EC /* Supporting Files */,
+				17949ED818367F790091F2EC /* EKEvent+NSCoder.h */,
+				17949ED918367F790091F2EC /* EKEvent+NSCoder.m */,
 			);
-			path = DeviceSyncTests;
-			sourceTree = "<group>";
-		};
-		17949EC91836793D0091F2EC /* Supporting Files */ = {
-			isa = PBXGroup;
-			children = (
-				17949ECA1836793D0091F2EC /* DeviceSyncTests-Info.plist */,
-				17949ECB1836793D0091F2EC /* InfoPlist.strings */,
-			);
-			name = "Supporting Files";
+			name = Categories;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -161,9 +138,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 17949ED21836793D0091F2EC /* Build configuration list for PBXNativeTarget "DeviceSync" */;
 			buildPhases = (
+				887350D880304CB5BB90F621 /* Check Pods Manifest.lock */,
 				17949E9D1836793D0091F2EC /* Sources */,
 				17949E9E1836793D0091F2EC /* Frameworks */,
 				17949E9F1836793D0091F2EC /* Resources */,
+				08308530DB29467DAC9531A9 /* Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -174,24 +153,6 @@
 			productReference = 17949EA11836793D0091F2EC /* DeviceSync.app */;
 			productType = "com.apple.product-type.application";
 		};
-		17949EC11836793D0091F2EC /* DeviceSyncTests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 17949ED51836793D0091F2EC /* Build configuration list for PBXNativeTarget "DeviceSyncTests" */;
-			buildPhases = (
-				17949EBE1836793D0091F2EC /* Sources */,
-				17949EBF1836793D0091F2EC /* Frameworks */,
-				17949EC01836793D0091F2EC /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				17949EC71836793D0091F2EC /* PBXTargetDependency */,
-			);
-			name = DeviceSyncTests;
-			productName = DeviceSyncTests;
-			productReference = 17949EC21836793D0091F2EC /* DeviceSyncTests.xctest */;
-			productType = "com.apple.product-type.bundle.unit-test";
-		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -200,11 +161,6 @@
 			attributes = {
 				CLASSPREFIX = DS;
 				LastUpgradeCheck = 0500;
-				TargetAttributes = {
-					17949EC11836793D0091F2EC = {
-						TestTargetID = 17949EA01836793D0091F2EC;
-					};
-				};
 			};
 			buildConfigurationList = 17949E9C1836793D0091F2EC /* Build configuration list for PBXProject "DeviceSync" */;
 			compatibilityVersion = "Xcode 3.2";
@@ -220,7 +176,6 @@
 			projectRoot = "";
 			targets = (
 				17949EA01836793D0091F2EC /* DeviceSync */,
-				17949EC11836793D0091F2EC /* DeviceSyncTests */,
 			);
 		};
 /* End PBXProject section */
@@ -230,52 +185,71 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				177ECAE0183692E60030A4F6 /* MainWindow.xib in Resources */,
 				17949EAF1836793D0091F2EC /* InfoPlist.strings in Resources */,
+				177ECAE21837B3360030A4F6 /* README.md in Resources */,
 				17949EBD1836793D0091F2EC /* Images.xcassets in Resources */,
 				17949EB51836793D0091F2EC /* Credits.rtf in Resources */,
-				17949EBB1836793D0091F2EC /* MainMenu.xib in Resources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		17949EC01836793D0091F2EC /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				17949ECD1836793D0091F2EC /* InfoPlist.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		08308530DB29467DAC9531A9 /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Pods-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		887350D880304CB5BB90F621 /* Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		17949E9D1836793D0091F2EC /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				17949EB11836793D0091F2EC /* main.m in Sources */,
+				17949EDA18367F790091F2EC /* EKEvent+NSCoder.m in Sources */,
+				173C3A1E18368B21009E2F55 /* main.m in Sources */,
 				17949EB81836793D0091F2EC /* DSAppDelegate.m in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		17949EBE1836793D0091F2EC /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				17949ECF1836793D0091F2EC /* DeviceSyncTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
-/* Begin PBXTargetDependency section */
-		17949EC71836793D0091F2EC /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 17949EA01836793D0091F2EC /* DeviceSync */;
-			targetProxy = 17949EC61836793D0091F2EC /* PBXContainerItemProxy */;
-		};
-/* End PBXTargetDependency section */
-
 /* Begin PBXVariantGroup section */
+		177ECADE183692E60030A4F6 /* MainWindow.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				177ECADF183692E60030A4F6 /* Base */,
+			);
+			name = MainWindow.xib;
+			sourceTree = "<group>";
+		};
 		17949EAD1836793D0091F2EC /* InfoPlist.strings */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -290,22 +264,6 @@
 				17949EB41836793D0091F2EC /* en */,
 			);
 			name = Credits.rtf;
-			sourceTree = "<group>";
-		};
-		17949EB91836793D0091F2EC /* MainMenu.xib */ = {
-			isa = PBXVariantGroup;
-			children = (
-				17949EBA1836793D0091F2EC /* Base */,
-			);
-			name = MainMenu.xib;
-			sourceTree = "<group>";
-		};
-		17949ECB1836793D0091F2EC /* InfoPlist.strings */ = {
-			isa = PBXVariantGroup;
-			children = (
-				17949ECC1836793D0091F2EC /* en */,
-			);
-			name = InfoPlist.strings;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
@@ -381,12 +339,17 @@
 		};
 		17949ED31836793D0091F2EC /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 8E2C008FE84240AEBE77713A /* Pods.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				COMBINE_HIDPI_IMAGES = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(DEVELOPER_FRAMEWORKS_DIR)",
+				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "DeviceSync/DeviceSync-Prefix.pch";
-				INFOPLIST_FILE = "DeviceSync/DeviceSync-Info.plist";
+				GCC_PREFIX_HEADER = "DeviceSync/SupportingFiles/DeviceSync-Prefix.pch";
+				INFOPLIST_FILE = "DeviceSync/SupportingFiles/DeviceSync-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
@@ -394,54 +357,19 @@
 		};
 		17949ED41836793D0091F2EC /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 8E2C008FE84240AEBE77713A /* Pods.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				COMBINE_HIDPI_IMAGES = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(DEVELOPER_FRAMEWORKS_DIR)",
+				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "DeviceSync/DeviceSync-Prefix.pch";
-				INFOPLIST_FILE = "DeviceSync/DeviceSync-Info.plist";
+				GCC_PREFIX_HEADER = "DeviceSync/SupportingFiles/DeviceSync-Prefix.pch";
+				INFOPLIST_FILE = "DeviceSync/SupportingFiles/DeviceSync-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
-			};
-			name = Release;
-		};
-		17949ED61836793D0091F2EC /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/DeviceSync.app/Contents/MacOS/DeviceSync";
-				COMBINE_HIDPI_IMAGES = YES;
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(DEVELOPER_FRAMEWORKS_DIR)",
-					"$(inherited)",
-				);
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "DeviceSync/DeviceSync-Prefix.pch";
-				GCC_PREPROCESSOR_DEFINITIONS = (
-					"DEBUG=1",
-					"$(inherited)",
-				);
-				INFOPLIST_FILE = "DeviceSyncTests/DeviceSyncTests-Info.plist";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUNDLE_LOADER)";
-				WRAPPER_EXTENSION = xctest;
-			};
-			name = Debug;
-		};
-		17949ED71836793D0091F2EC /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/DeviceSync.app/Contents/MacOS/DeviceSync";
-				COMBINE_HIDPI_IMAGES = YES;
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(DEVELOPER_FRAMEWORKS_DIR)",
-					"$(inherited)",
-				);
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "DeviceSync/DeviceSync-Prefix.pch";
-				INFOPLIST_FILE = "DeviceSyncTests/DeviceSyncTests-Info.plist";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUNDLE_LOADER)";
-				WRAPPER_EXTENSION = xctest;
 			};
 			name = Release;
 		};
@@ -464,14 +392,7 @@
 				17949ED41836793D0091F2EC /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
-		};
-		17949ED51836793D0091F2EC /* Build configuration list for PBXNativeTarget "DeviceSyncTests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				17949ED61836793D0091F2EC /* Debug */,
-				17949ED71836793D0091F2EC /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

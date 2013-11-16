@@ -1,5 +1,5 @@
 //
-//  DSAppDelegate.h
+//  DSProtocol.h
 //  DeviceSync
 //
 // Copyright (c) 2013 Jahn Bertsch
@@ -24,13 +24,28 @@
 // THE SOFTWARE.
 //
 
-#import <Cocoa/Cocoa.h>
-#import <PTChannel.h>
+#ifndef DeviceSync_DSProtocol_h
+#define DeviceSync_DSProtocol_h
 
-static const NSTimeInterval DSAppReconnectDelay = 1.0;
+#import <Foundation/Foundation.h>
+#include <stdint.h>
 
-@interface DSAppDelegate : NSObject <NSApplicationDelegate, PTChannelDelegate>
+// use tcp port 51515 which should be free according to
+// https://www.iana.org/assignments/service-names-port-numbers/service-names-port-numbers.xhtml
+// at time of writing
+static const int DSProtocolIPv4PortNumber = 51515;
 
-@property (assign) IBOutlet NSTextView *outputTextView;
+enum {
+    DSDeviceSyncFrameTypeDeviceInfo = 100,
+    DSDeviceSyncFrameTypePing = 101,
+    DSDeviceSyncFrameTypePong = 102,
+    DSDeviceSyncFrameTypeCalendar = 103,
+    DSDeviceSyncFrameTypeEvent = 104,
+};
 
-@end
+typedef struct _DSDeviceSyncFrame {
+    uint32_t length;
+    uint8_t data[0];
+} DSDeviceSyncFrame;
+
+#endif /* ifndef DeviceSync_DSProtocol_h */
