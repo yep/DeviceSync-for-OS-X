@@ -245,7 +245,7 @@
         [self displayMessage:[NSString stringWithFormat:@"Error saving event: %@", error.localizedDescription]];
     } else {
         NSDateFormatter *dateFormat = [[NSDateFormatter alloc] init];
-        [dateFormat setDateFormat:@"yyyy-MM-dd"];
+        [dateFormat setDateStyle:NSDateFormatterShortStyle];
         [self displayMessage:[NSString stringWithFormat:@"Imported '%@' on %@.", receivedEvent.title, [dateFormat stringFromDate:receivedEvent.startDate]]];
     }
 }
