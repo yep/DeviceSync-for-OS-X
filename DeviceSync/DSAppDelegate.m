@@ -180,7 +180,7 @@
 
     if (type == DSDeviceSyncFrameTypeDeviceInfo) {
         NSDictionary *deviceInfo = [NSDictionary dictionaryWithContentsOfDispatchData:payload.dispatchData];
-        [self displayMessage:[NSString stringWithFormat:@"Connected to '%@' running %@ %@. Press 'Sync' button on device to start.", deviceInfo[@"name"], deviceInfo[@"systemName"], deviceInfo[@"systemVersion"]]];
+        [self displayMessage:[NSString stringWithFormat:@"Connected to '%@' running iOS %@. Press 'Sync' button on device to start.", deviceInfo[@"name"], deviceInfo[@"systemVersion"]]];
     } else if (type == DSDeviceSyncFrameTypeCalendar) {
         NSDictionary *calendar = [NSDictionary dictionaryWithContentsOfDispatchData:payload.dispatchData];
         [self didReceiveCalendarWithTitle:calendar[@"title"]];
@@ -245,7 +245,7 @@
         [self displayMessage:[NSString stringWithFormat:@"Error saving event: %@", error.localizedDescription]];
     } else {
         NSDateFormatter *dateFormat = [[NSDateFormatter alloc] init];
-        [dateFormat setDateFormat:@"yyyy-MM-dd"];
+        [dateFormat setDateStyle:NSDateFormatterShortStyle];
         [self displayMessage:[NSString stringWithFormat:@"Imported '%@' on %@.", receivedEvent.title, [dateFormat stringFromDate:receivedEvent.startDate]]];
     }
 }
@@ -270,7 +270,6 @@
 
     [nc addObserverForName:PTUSBDeviceDidAttachNotification object:PTUSBHub.sharedHub queue:nil usingBlock:^(NSNotification *note) {
         NSNumber *deviceID = [note.userInfo objectForKey:@"DeviceID"];
-        //NSLog(@"PTUSBDeviceDidAttachNotification: %@", note.userInfo);
         NSLog(@"PTUSBDeviceDidAttachNotification: %@", deviceID);
 
         dispatch_async(self.notConnectedQueue, ^{
