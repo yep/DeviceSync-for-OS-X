@@ -12,6 +12,7 @@
 		173C3A171836896B009E2F55 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 17949EA91836793D0091F2EC /* Foundation.framework */; };
 		173C3A1C183689C1009E2F55 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 173C3A1B183689C1009E2F55 /* QuartzCore.framework */; };
 		173C3A1E18368B21009E2F55 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 173C3A1D18368B21009E2F55 /* main.m */; };
+		177848E218438F32006FC012 /* AddressBook.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 177848E118438F32006FC012 /* AddressBook.framework */; };
 		177ECAE0183692E60030A4F6 /* MainWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 177ECADE183692E60030A4F6 /* MainWindow.xib */; };
 		177ECAE21837B3360030A4F6 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 177ECAE11837B3360030A4F6 /* README.md */; };
 		17949EA51836793D0091F2EC /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 17949EA41836793D0091F2EC /* Cocoa.framework */; };
@@ -28,6 +29,7 @@
 		173C3A1218368921009E2F55 /* EventKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = EventKit.framework; path = System/Library/Frameworks/EventKit.framework; sourceTree = SDKROOT; };
 		173C3A1B183689C1009E2F55 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		173C3A1D18368B21009E2F55 /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = main.m; path = SupportingFiles/main.m; sourceTree = "<group>"; };
+		177848E118438F32006FC012 /* AddressBook.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AddressBook.framework; path = System/Library/Frameworks/AddressBook.framework; sourceTree = SDKROOT; };
 		177ECADF183692E60030A4F6 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/MainWindow.xib; sourceTree = "<group>"; };
 		177ECAE11837B3360030A4F6 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README.md; sourceTree = "<group>"; };
 		17949EA11836793D0091F2EC /* DeviceSync.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DeviceSync.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -52,6 +54,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				177848E218438F32006FC012 /* AddressBook.framework in Frameworks */,
 				173C3A1C183689C1009E2F55 /* QuartzCore.framework in Frameworks */,
 				173C3A151836896B009E2F55 /* AppKit.framework in Frameworks */,
 				173C3A171836896B009E2F55 /* Foundation.framework in Frameworks */,
@@ -86,6 +89,7 @@
 		17949EA31836793D0091F2EC /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				177848E118438F32006FC012 /* AddressBook.framework */,
 				173C3A1218368921009E2F55 /* EventKit.framework */,
 				17949EA71836793D0091F2EC /* AppKit.framework */,
 				173C3A1B183689C1009E2F55 /* QuartzCore.framework */,

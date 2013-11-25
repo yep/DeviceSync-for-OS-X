@@ -26,13 +26,14 @@
 
 #import <QuartzCore/QuartzCore.h>
 #import <EventKit/EventKit.h>
+#import <AddressBook/AddressBook.h>
+#import <AddressBook/ABAddressBookC.h>
 #import <PTUSBHub.h>
 #import "DSAppDelegate.h"
 #import "DSProtocol.h"
 #import "EKEvent+NSCoder.h"
 
 @interface DSAppDelegate ()
-@property (nonatomic, retain) EKEventStore *eventStore;
 @property (nonatomic, retain) NSNumber *connectingToDeviceID;
 @property (nonatomic, retain) NSNumber *connectedDeviceID;
 @property (nonatomic, retain) NSDictionary *connectedDeviceProperties;
@@ -42,6 +43,8 @@
 @property (nonatomic, retain) PTChannel *connectedChannel;
 @property (nonatomic, retain) NSDictionary *consoleStatusTextAttributes;
 @property (nonatomic, retain) NSMutableDictionary *pings;
+@property (nonatomic, retain) EKEventStore *eventStore;
+@property (nonatomic, retain) ABAddressBook *addressBook;
 @property (nonatomic, retain) EKCalendar *currentCalendar;
 @end
 
@@ -55,6 +58,33 @@
                                         [NSColor lightGrayColor], NSForegroundColorAttributeName,
                                         nil];
 
+    BOOL calendarPermissions = [self askForCalendarPermissions];
+    BOOL contactsPermissions = [self askForContactsPermissions];
+
+    if (calendarPermissions && contactsPermissions) {
+        // use a serial queue that we toggle depending on if we are connected or
+        // not. when we are not connected to a peer, the queue is running to handle
+        // "connect" tries. when we are connected to a peer, the queue is suspended
+        // thus no longer trying to connect.
+        self.notConnectedQueue = dispatch_queue_create("DSCalSync.notConnectedQueue", DISPATCH_QUEUE_SERIAL);
+
+        // start listening for device attached/detached notifications
+        [self startListeningForDevices];
+
+        // start trying to connect to local IPv4 port (defined in DSCalSyncProtocol.h)
+        [self enqueueConnectToLocalIPv4Port];
+
+        // start pinging
+        [self ping];
+
+        [self displayMessage:@"WARNING: LOCAL DATA WILL BE OVERWRITTEN ON SYNCHRONIZATION!"];
+
+        [self displayMessage:@"Plug in USB cable and launch 'DeviceSync for iOS' to start calendar synchronization."];
+    }
+}
+
+- (BOOL)askForCalendarPermissions
+{
     self.eventStore = [[EKEventStore alloc] init];
 
     __block BOOL accessGranted = NO;
@@ -74,47 +104,40 @@
         [self displayMessage:@"No permissions to access calendar."];
         [self displayMessage:@"Please enable calendar access in OSX Settings -> Security -> Privacy"];
     } else {
-        // use a serial queue that we toggle depending on if we are connected or
-        // not. when we are not connected to a peer, the queue is running to handle
-        // "connect" tries. when we are connected to a peer, the queue is suspended
-        // thus no longer trying to connect.
-        self.notConnectedQueue = dispatch_queue_create("DSCalSync.notConnectedQueue", DISPATCH_QUEUE_SERIAL);
-
-        // start listening for device attached/detached notifications
-        [self startListeningForDevices];
-
-        // start trying to connect to local IPv4 port (defined in DSCalSyncProtocol.h)
-        [self enqueueConnectToLocalIPv4Port];
-
-        // start pinging
-        [self ping];
-
-        [self displayMessage:@"WARNING: ALL LOCAL CALENDAR DATA WILL BE OVERWRITTEN ON SYNCHRONIZATION!"];
-
-        [self displayMessage:@"Plug in USB cable and launch 'DeviceSync for iOS' to start calendar synchronization."];
+        [self displayMessage:@"Access to calendar granted."];
     }
+    return accessGranted;
+}
+
+- (BOOL)askForContactsPermissions
+{
+    self.addressBook = [ABAddressBook sharedAddressBook];
+    BOOL accessGranted = NO;
+
+    if (self.addressBook == nil) {
+        [self displayMessage:@"No permissions to access contacts."];
+        [self displayMessage:@"Please enable contacts access in OSX Settings -> Security -> Privacy."];
+    } else {
+        accessGranted = YES;
+        [self displayMessage:@"Access to contacts granted."];
+    }
+
+    return accessGranted;
 }
 
 - (void)displayMessage:(NSString *)message
 {
-    NSLog(@">> %@", message);
+    DLog(@">> %@", message);
 
-    [self.outputTextView.textStorage beginEditing];
+    BOOL scroll = (NSMaxY(self.outputTextView.visibleRect) == NSMaxY(self.outputTextView.bounds));
+
     message = [NSString stringWithFormat:@"%@\n\n", message];
     [self.outputTextView.textStorage appendAttributedString:[[NSAttributedString alloc] initWithString:message attributes:self.consoleStatusTextAttributes]];
-    [self.outputTextView.textStorage endEditing];
 
-    [NSAnimationContext beginGrouping];
-    [NSAnimationContext currentContext].duration = 0.15;
-    [NSAnimationContext currentContext].timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut];
-    NSClipView *clipView = [[self.outputTextView enclosingScrollView] contentView];
-    NSPoint newOrigin = clipView.bounds.origin;
-    newOrigin.y += 5.0;
-    [clipView setBoundsOrigin:newOrigin];
-    newOrigin.y += 1000.0;
-    newOrigin = [clipView constrainScrollPoint:newOrigin];
-    [clipView.animator setBoundsOrigin:newOrigin];
-    [NSAnimationContext endGrouping];
+    if (scroll) {
+        [self.outputTextView scrollRangeToVisible: NSMakeRange(self.outputTextView.string.length, 0)];
+
+    }
 }
 
 #pragma mark - ping
@@ -128,7 +151,7 @@
         NSDate *now = [NSDate date];
         [pingInfo setObject:now forKey:@"date ended"];
         [self.pings removeObjectForKey:tag];
-        NSLog(@"Ping total roundtrip time: %.3f ms", [now timeIntervalSinceDate:[pingInfo objectForKey:@"date created"]] * 1000.0);
+        DLog(@"Ping total roundtrip time: %.3f ms", [now timeIntervalSinceDate:[pingInfo objectForKey:@"date created"]] * 1000.0);
     }
 }
 
@@ -165,8 +188,9 @@
         && type != DSDeviceSyncFrameTypePong
         && type != DSDeviceSyncFrameTypeCalendar
         && type != DSDeviceSyncFrameTypeEvent
+        && type != DSDeviceSyncFrameTypeContact
         && type != PTFrameTypeEndOfStream) {
-        NSLog(@"Unexpected frame of type %u", type);
+        DLog(@"Unexpected frame of type %u", type);
         [channel close];
         return NO;
     } else {
@@ -176,7 +200,7 @@
 
 - (void)ioFrameChannel:(PTChannel *)channel didReceiveFrameOfType:(uint32_t)type tag:(uint32_t)tag payload:(PTData *)payload
 {
-    //NSLog(@"received %@, %u, %u, %@", channel, type, tag, payload);
+    DLog(@"received channel=%@, type=%u, tag=%u, payload=%@", channel, type, tag, payload);
 
     if (type == DSDeviceSyncFrameTypeDeviceInfo) {
         NSDictionary *deviceInfo = [NSDictionary dictionaryWithContentsOfDispatchData:payload.dispatchData];
@@ -185,13 +209,20 @@
         NSDictionary *calendar = [NSDictionary dictionaryWithContentsOfDispatchData:payload.dispatchData];
         [self didReceiveCalendarWithTitle:calendar[@"title"]];
     } else if (type == DSDeviceSyncFrameTypeEvent) {
-        DSDeviceSyncFrame *eventFrame = (DSDeviceSyncFrame *)payload.data;
-        eventFrame->length = ntohl(eventFrame->length);
-        NSMutableData *data = [NSData dataWithBytes:eventFrame->data length:eventFrame->length];
+        DSDeviceSyncFrame *deviceSyncFrame = (DSDeviceSyncFrame *)payload.data;
+        deviceSyncFrame->length = ntohl(deviceSyncFrame->length);
+        NSMutableData *data = [NSData dataWithBytes:deviceSyncFrame->data length:deviceSyncFrame->length];
         EKEvent *event = [NSKeyedUnarchiver unarchiveObjectWithData:data];
         [self didReceiveEvent:event];
     } else if (type == DSDeviceSyncFrameTypePong) {
         [self pongWithTag:tag error:nil];
+    } else if (type == DSDeviceSyncFrameTypeContact) {
+        DSDeviceSyncFrame *deviceSyncFrame = (DSDeviceSyncFrame *)payload.data;
+        deviceSyncFrame->length = ntohl(deviceSyncFrame->length);
+        NSMutableData *data = [NSData dataWithBytes:deviceSyncFrame->data length:deviceSyncFrame->length];
+        [self didReceiveContactData:data first:tag];
+    } else {
+        DLog(@"unexpected frame recieved");
     }
 }
 
@@ -250,6 +281,49 @@
     }
 }
 
+- (void)didReceiveContactData:(NSMutableData *)contactData first:(uint32_t)first
+{
+    NSError *error;
+
+    if (first != PTFrameNoTag) {
+        // is first contact of import. delete previous contacts.
+        ABSearchElement *seachElement = [ABPerson searchElementForProperty:nil label:nil key:nil value:@"" comparison:kABNotEqual];
+        NSArray *people = [self.addressBook recordsMatchingSearchElement:seachElement];
+
+        for (NSInteger i = 0; i < people.count; i++)
+        {
+            ABPerson *person = people[i];
+            error = nil;
+            if (![self.addressBook removeRecord:person error:&error]) {
+                [self displayMessage:[NSString stringWithFormat:@"Error deleting address book entry: %@", error.localizedDescription]];
+            }
+        }
+        if (![self.addressBook save]) {
+            [self displayMessage:@"Error saving address book."];
+        }
+    }
+
+    ABPerson *person = [[ABPerson alloc] initWithVCardRepresentation:contactData];
+    error = nil;
+    if (![self.addressBook addRecord:person error:&error]) {
+        [self displayMessage:[NSString stringWithFormat:@"Error adding address book entry: %@", error.localizedDescription]];
+    } else {
+        NSString *name;
+        if ([person valueForProperty:kABFirstNameProperty] != nil &&
+            [person valueForProperty:kABLastNameProperty] != nil) {
+            name = [NSString stringWithFormat:@"%@ %@", [person valueForProperty:kABFirstNameProperty], [person valueForProperty:kABLastNameProperty]];
+        } else if (!([person valueForProperty:kABFirstNameProperty] == nil)) {
+            name = [person valueForProperty:kABFirstNameProperty];
+        } else if (!([person valueForProperty:kABLastNameProperty] == nil)) {
+            name = [person valueForProperty:kABLastNameProperty];
+        }
+        [self displayMessage:[NSString stringWithFormat:@"Imported contact '%@'", name]];
+    }
+    if (![self.addressBook save]) {
+        [self displayMessage:@"Error saving address book."];
+    }
+}
+
 - (void)ioFrameChannel:(PTChannel *)channel didEndWithError:(NSError *)error
 {
     if (self.connectedDeviceID && [self.connectedDeviceID isEqualToNumber:channel.userInfo]) {
@@ -270,7 +344,7 @@
 
     [nc addObserverForName:PTUSBDeviceDidAttachNotification object:PTUSBHub.sharedHub queue:nil usingBlock:^(NSNotification *note) {
         NSNumber *deviceID = [note.userInfo objectForKey:@"DeviceID"];
-        NSLog(@"PTUSBDeviceDidAttachNotification: %@", deviceID);
+        DLog(@"PTUSBDeviceDidAttachNotification: %@", deviceID);
 
         dispatch_async(self.notConnectedQueue, ^{
                 if (!self.connectingToDeviceID || ![deviceID isEqualToNumber:self.connectingToDeviceID]) {
@@ -284,8 +358,8 @@
 
     [nc addObserverForName:PTUSBDeviceDidDetachNotification object:PTUSBHub.sharedHub queue:nil usingBlock:^(NSNotification *note) {
         NSNumber *deviceID = [note.userInfo objectForKey:@"DeviceID"];
-        //NSLog(@"PTUSBDeviceDidDetachNotification: %@", note.userInfo);
-        NSLog(@"PTUSBDeviceDidDetachNotification: %@", deviceID);
+        //DLog(@"PTUSBDeviceDidDetachNotification: %@", note.userInfo);
+        DLog(@"PTUSBDeviceDidDetachNotification: %@", deviceID);
 
         if ([self.connectingToDeviceID isEqualToNumber:deviceID]) {
             self.connectedDeviceProperties = nil;
@@ -300,7 +374,7 @@
 
 - (void)didDisconnectFromDevice:(NSNumber *)deviceID
 {
-    NSLog(@"Disconnected from device");
+    DLog(@"Disconnected from device");
 
     if ([self.connectedDeviceID isEqualToNumber:deviceID]) {
         [self willChangeValueForKey:@"connectedDeviceID"];
@@ -342,7 +416,7 @@
             [self disconnectFromCurrentChannel];
             self.connectedChannel = channel;
             channel.userInfo = address;
-            NSLog(@"Connected to %@", address);
+            DLog(@"Connected to %@", address);
         }
 
         [self performSelector:@selector(enqueueConnectToLocalIPv4Port) withObject:nil afterDelay:DSAppReconnectDelay];
@@ -368,9 +442,9 @@
     [channel connectToPort:DSProtocolIPv4PortNumber overUSBHub:PTUSBHub.sharedHub deviceID:self.connectingToDeviceID callback:^(NSError *error) {
         if (error) {
             if (error.domain == PTUSBHubErrorDomain && error.code == PTUSBHubErrorConnectionRefused) {
-                NSLog(@"Failed to connect to device #%@: %@", channel.userInfo, error);
+                DLog(@"Failed to connect to device #%@: %@", channel.userInfo, error);
             } else {
-                NSLog(@"Failed to connect to device #%@: %@", channel.userInfo, error);
+                DLog(@"Failed to connect to device #%@: %@", channel.userInfo, error);
             }
 
             if (channel.userInfo == self.connectingToDeviceID) {

@@ -4,6 +4,12 @@
 //  The contents of this file are implicitly included at the beginning of every source file.
 //
 
+#ifdef DEBUG
+#define DLog(...) NSLog(@"%s:%d: %@", __PRETTY_FUNCTION__, __LINE__, [NSString stringWithFormat:__VA_ARGS__])
+#else
+#define DLog(...) do { } while (0)
+#endif
+
 #ifdef __OBJC__
     #import <Cocoa/Cocoa.h>
 #endif

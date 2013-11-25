@@ -35,12 +35,15 @@
 // at time of writing
 static const int DSProtocolIPv4PortNumber = 51515;
 
+static const uint32_t DSFrameIsFirstTag = 1;
+
 enum {
     DSDeviceSyncFrameTypeDeviceInfo = 100,
     DSDeviceSyncFrameTypePing = 101,
     DSDeviceSyncFrameTypePong = 102,
     DSDeviceSyncFrameTypeCalendar = 103,
     DSDeviceSyncFrameTypeEvent = 104,
+    DSDeviceSyncFrameTypeContact = 105,
 };
 
 typedef struct _DSDeviceSyncFrame {
