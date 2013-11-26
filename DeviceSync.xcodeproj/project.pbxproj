@@ -21,6 +21,7 @@
 		17949EB81836793D0091F2EC /* DSAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 17949EB71836793D0091F2EC /* DSAppDelegate.m */; };
 		17949EBD1836793D0091F2EC /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 17949EBC1836793D0091F2EC /* Images.xcassets */; };
 		17949EDA18367F790091F2EC /* EKEvent+NSCoder.m in Sources */ = {isa = PBXBuildFile; fileRef = 17949ED918367F790091F2EC /* EKEvent+NSCoder.m */; };
+		17D6BB4A1844BC4800EDD23C /* DSChannelDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 17D6BB491844BC4800EDD23C /* DSChannelDelegate.m */; };
 		95AB0464756C40D4A3AB6A75 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A5FD9BBF8D6A4D94A8F32C87 /* libPods.a */; };
 /* End PBXBuildFile section */
 
@@ -42,9 +43,11 @@
 		17949EB41836793D0091F2EC /* en */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; name = en; path = en.lproj/Credits.rtf; sourceTree = "<group>"; };
 		17949EB61836793D0091F2EC /* DSAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = DSAppDelegate.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
 		17949EB71836793D0091F2EC /* DSAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = DSAppDelegate.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
-		17949EBC1836793D0091F2EC /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		17949EBC1836793D0091F2EC /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = Resources/Images.xcassets; sourceTree = "<group>"; };
 		17949ED818367F790091F2EC /* EKEvent+NSCoder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "EKEvent+NSCoder.h"; path = "Categories/EKEvent+NSCoder.h"; sourceTree = "<group>"; };
 		17949ED918367F790091F2EC /* EKEvent+NSCoder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "EKEvent+NSCoder.m"; path = "Categories/EKEvent+NSCoder.m"; sourceTree = "<group>"; };
+		17D6BB481844BC4800EDD23C /* DSChannelDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DSChannelDelegate.h; path = Networking/DSChannelDelegate.h; sourceTree = "<group>"; };
+		17D6BB491844BC4800EDD23C /* DSChannelDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DSChannelDelegate.m; path = Networking/DSChannelDelegate.m; sourceTree = "<group>"; };
 		8E2C008FE84240AEBE77713A /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = "<group>"; };
 		A5FD9BBF8D6A4D94A8F32C87 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -106,10 +109,10 @@
 				173C3A11183685E2009E2F55 /* DSProtocol.h */,
 				17949EB61836793D0091F2EC /* DSAppDelegate.h */,
 				17949EB71836793D0091F2EC /* DSAppDelegate.m */,
-				177ECADE183692E60030A4F6 /* MainWindow.xib */,
+				17D6BB4B1844BC7600EDD23C /* Networking */,
 				17949EDB18367F800091F2EC /* Categories */,
+				17D6BB4C1844BC9000EDD23C /* Resources */,
 				17949EAB1836793D0091F2EC /* SupportingFiles */,
-				17949EBC1836793D0091F2EC /* Images.xcassets */,
 			);
 			path = DeviceSync;
 			sourceTree = "<group>";
@@ -133,6 +136,24 @@
 				17949ED918367F790091F2EC /* EKEvent+NSCoder.m */,
 			);
 			name = Categories;
+			sourceTree = "<group>";
+		};
+		17D6BB4B1844BC7600EDD23C /* Networking */ = {
+			isa = PBXGroup;
+			children = (
+				17D6BB481844BC4800EDD23C /* DSChannelDelegate.h */,
+				17D6BB491844BC4800EDD23C /* DSChannelDelegate.m */,
+			);
+			name = Networking;
+			sourceTree = "<group>";
+		};
+		17D6BB4C1844BC9000EDD23C /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				177ECADE183692E60030A4F6 /* MainWindow.xib */,
+				17949EBC1836793D0091F2EC /* Images.xcassets */,
+			);
+			name = Resources;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -238,6 +259,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				17949EDA18367F790091F2EC /* EKEvent+NSCoder.m in Sources */,
+				17D6BB4A1844BC4800EDD23C /* DSChannelDelegate.m in Sources */,
 				173C3A1E18368B21009E2F55 /* main.m in Sources */,
 				17949EB81836793D0091F2EC /* DSAppDelegate.m in Sources */,
 			);

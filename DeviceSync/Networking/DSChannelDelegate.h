@@ -1,5 +1,5 @@
 //
-//  DSAppDelegate.h
+//  DSChannelDelegate.h
 //  DeviceSync
 //
 // Copyright (c) 2013 Jahn Bertsch
@@ -24,18 +24,25 @@
 // THE SOFTWARE.
 //
 
-#import <Cocoa/Cocoa.h>
 #import <PTChannel.h>
 
-static const NSTimeInterval DSAppReconnectDelay = 1.0;
+// forward declaration, break import cycle
+@class DSAppDelegate;
 
-@interface DSAppDelegate : NSObject <NSApplicationDelegate>
+@interface DSChannelDelegate : NSObject <PTChannelDelegate>
 
-@property (assign) IBOutlet NSTextView *outputTextView;
+@property (nonatomic, retain) DSAppDelegate *appDelegate;
 
-- (void)displayMessage:(NSString *)message;
-- (void)didReceiveCalendarWithTitle:(NSString *)title;
-- (void)didReceiveEvent:(EKEvent *)receivedEvent;
-- (void)didReceiveContactData:(NSMutableData *)contactData first:(uint32_t)first;
+@property (nonatomic, retain) NSNumber *connectingToDeviceID;
+@property (nonatomic, retain) NSNumber *connectedDeviceID;
+@property (nonatomic, retain) NSDictionary *connectedDeviceProperties;
+@property (nonatomic, retain) NSDictionary *remoteDeviceInfo;
+@property (nonatomic, retain) dispatch_queue_t notConnectedQueue;
+@property (nonatomic, assign) BOOL notConnectedQueueSuspended;
+@property (nonatomic, retain) PTChannel *connectedChannel;
+
+- (void)startListeningForDevices;
+- (void)enqueueConnectToLocalIPv4Port;
+- (void)ping;
 
 @end
