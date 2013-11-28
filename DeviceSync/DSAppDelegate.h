@@ -29,8 +29,13 @@
 
 static const NSTimeInterval DSAppReconnectDelay = 1.0;
 
-@interface DSAppDelegate : NSObject <NSApplicationDelegate, PTChannelDelegate>
+@interface DSAppDelegate : NSObject <NSApplicationDelegate>
 
 @property (assign) IBOutlet NSTextView *outputTextView;
+
+- (void)displayMessage:(NSString *)message;
+- (void)didReceiveCalendarWithTitle:(NSString *)title;
+- (void)didReceiveEvent:(EKEvent *)receivedEvent;
+- (void)didReceiveContactData:(NSMutableData *)contactData first:(uint32_t)first;
 
 @end

@@ -1,5 +1,5 @@
 //
-//  DSProtocol.h
+//  DSChannelDelegate.h
 //  DeviceSync
 //
 // Copyright (c) 2013 Jahn Bertsch
@@ -24,31 +24,25 @@
 // THE SOFTWARE.
 //
 
-#ifndef DeviceSync_DSProtocol_h
-#define DeviceSync_DSProtocol_h
+#import <PTChannel.h>
 
-#import <Foundation/Foundation.h>
-#include <stdint.h>
+// forward declaration, break import cycle
+@class DSAppDelegate;
 
-// use tcp port 51515 which should be free according to
-// https://www.iana.org/assignments/service-names-port-numbers/service-names-port-numbers.xhtml
-// at time of writing
-static const int DSProtocolIPv4PortNumber = 51515;
+@interface DSChannelDelegate : NSObject <PTChannelDelegate>
 
-static const uint32_t DSFrameIsFirstTag = 1;
+@property (nonatomic, retain) DSAppDelegate *appDelegate;
 
-enum {
-    DSDeviceSyncFrameTypeDeviceInfo = 100,
-    DSDeviceSyncFrameTypePing = 101,
-    DSDeviceSyncFrameTypePong = 102,
-    DSDeviceSyncFrameTypeCalendar = 103,
-    DSDeviceSyncFrameTypeEvent = 104,
-    DSDeviceSyncFrameTypeContact = 105,
-};
+@property (nonatomic, retain) NSNumber *connectingToDeviceID;
+@property (nonatomic, retain) NSNumber *connectedDeviceID;
+@property (nonatomic, retain) NSDictionary *connectedDeviceProperties;
+@property (nonatomic, retain) NSDictionary *remoteDeviceInfo;
+@property (nonatomic, retain) dispatch_queue_t notConnectedQueue;
+@property (nonatomic, assign) BOOL notConnectedQueueSuspended;
+@property (nonatomic, retain) PTChannel *connectedChannel;
 
-typedef struct _DSDeviceSyncFrame {
-    uint32_t length;
-    uint8_t data[0];
-} DSDeviceSyncFrame;
+- (void)startListeningForDevices;
+- (void)enqueueConnectToLocalIPv4Port;
+- (void)ping;
 
-#endif /* ifndef DeviceSync_DSProtocol_h */
+@end
